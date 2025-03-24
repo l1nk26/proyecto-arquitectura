@@ -41,7 +41,7 @@ class LRUCache {
             list<int>::iterator lru_it;
         };
     
-        int capacity;
+        unsigned int capacity;
         list<int> lru_list;
         unordered_map<int, CacheEntry> cache_map;
     

@@ -1,5 +1,8 @@
 #include <vector>
 #include "stats.h"
+#include <list>
+#include <unordered_map>
+   
 
 class DirectMappedCache {
     
@@ -42,9 +45,7 @@ class DirectMappedCache {
         }
     };
 
-#include <list>
-#include <unordered_map>
-   
+
     
 class SetAssociativeCache {
 private:
