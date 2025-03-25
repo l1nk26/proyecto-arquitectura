@@ -14,7 +14,10 @@ APP_OBJECTS := $(patsubst $(APP_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(APP_SOURCES))
 
 OBJECTS := $(SRC_OBJECTS) $(APP_OBJECTS)
 
-EXECUTABLE := filesystem_sim
+EXECUTABLE := program
+
+ejecutar: all
+	./program
 
 all: $(BUILD_DIR) $(EXECUTABLE)
 
@@ -33,4 +36,4 @@ $(BUILD_DIR):
 clean:
 	rm -rf $(BUILD_DIR) $(EXECUTABLE)
 
-.PHONY: all clean
+.PHONY: all clean ejecutar
