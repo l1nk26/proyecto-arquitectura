@@ -2,6 +2,8 @@
 #include "Ext3.hpp"
 #include "Ext4.hpp"
 #include "LRUCache.hpp"
+#include "SetAssociativeCache.hpp"
+#include "DirectMappedCache.hpp"
 #include <iostream>
 
 using namespace std;
@@ -12,11 +14,12 @@ int main() {
     const int NUM_OPS = 10000;
     
     // Configurar caché
-    LRUCache cache(CACHE_SIZE);
-    
+    DirectMappedCache dmCache(CACHE_SIZE);
+    SetAssociativeCache saCache(CACHE_SIZE, 4);
+
     // Crear sistemas de archivos
-    Ext3 ext3(cache, BLOCK_SIZE);
-    Ext4 ext4(cache, BLOCK_SIZE);
+    Ext3 ext3(dmCache, BLOCK_SIZE);
+    Ext4 ext4(dmCache, BLOCK_SIZE);
     
     // Generar patrones de acceso
     vector<int> seq_access = generate_access_pattern(NUM_OPS, true);
@@ -28,8 +31,10 @@ int main() {
     cout << "=== Simulación con acceso secuencial ===\n";
     run_simulation(ext3, seq_access, stats_ext3);
     run_simulation(ext4, seq_access, stats_ext4);
-    print_stats(stats_ext3, "ext3");
-    print_stats(stats_ext4, "ext4");
+    print_stats(stats_ext3, "ext3 con cache directamente mapeada");
+    print_stats(stats_ext4, "ext4 con cache directamente mapeada");
+
+    
     
     cout << "=== Simulación con acceso aleatorio ===\n";
     AdvancedStats stats_ext3_rand = {}, stats_ext4_rand = {};
