@@ -1,6 +1,5 @@
 CXX := g++
 CXXFLAGS := -std=c++17 -Iinclude -Wall -Wextra -O3
-LDFLAGS := 
 
 SRC_DIR := src
 APP_DIR := app
@@ -22,7 +21,7 @@ ejecutar: all
 all: $(BUILD_DIR) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	$(CXX) $^ -o $@
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
