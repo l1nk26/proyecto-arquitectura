@@ -39,7 +39,10 @@ void run_simulation(FileSystem& fs, std::vector<int>& addresses, AdvancedStats& 
     stats.avg_access_time = stats.total_latency / addresses.size();
 }
 
-void print_stats(const AdvancedStats& stats, const std::string& fs_name) {
+void print_stats(const AdvancedStats& stats, const std::string& fs_name, Color c = DEFAULT) {
+
+    std::cout << "\033[" << c << "m";
+
     std::cout << "Estadísticas para " << fs_name << ":\n";
     std::cout << "--------------------------------\n";
     std::cout << "Aciertos de caché: " << stats.cache_hits << "\n";
@@ -47,7 +50,9 @@ void print_stats(const AdvancedStats& stats, const std::string& fs_name) {
     std::cout << "Lecturas de disco: " << stats.disk_reads << "\n";
     std::cout << "Escrituras de disco: " << stats.disk_writes << "\n";
     std::cout << "Operaciones de journal: " << stats.journal_ops << "\n";
-    std::cout << std::fixed << std::setprecision(2);
+    std::cout << std::fixed << std::setprecision(8);
     std::cout << "Latencia total: " << stats.total_latency << " ms\n";
     std::cout << "Tiempo medio por acceso: " << stats.avg_access_time << " ms\n\n";
+
+    std::cout << "\033[0m";
 }
