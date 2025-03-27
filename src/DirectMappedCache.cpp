@@ -4,6 +4,10 @@ DirectMappedCache::DirectMappedCache(int size) : Cache(size) {
     cache_entries.resize(size, {-1, false, false});  // Inicializar entradas como inválidas
 }
 
+DirectMappedCache::DirectMappedCache(DirectMappedCache const &c) : Cache(c) {
+    cache_entries = c.cache_entries;
+}
+
 bool DirectMappedCache::access(int block_id, AdvancedStats& stats) {
     int index = block_id % capacity;  // Función de correspondencia directa
     if (cache_entries[index].valid && cache_entries[index].block_id == block_id) {

@@ -20,6 +20,8 @@ public:
     
     DirectMappedCache(int size);
 
+    DirectMappedCache(DirectMappedCache const &c);
+
     bool access(int block_id, AdvancedStats& stats) override;
 
     void add_block(int block_id) override;

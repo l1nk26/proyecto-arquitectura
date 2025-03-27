@@ -11,6 +11,8 @@ class Cache {
     public:
 
         Cache(int size) : capacity(size) {}
+
+        Cache(Cache const &c) : capacity(c.capacity) {}
     
         virtual bool access(int block_id, AdvancedStats& stats) = 0;
     

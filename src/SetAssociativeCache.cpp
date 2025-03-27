@@ -6,6 +6,12 @@
         cache_maps.resize(num_sets);
     }
 
+    SetAssociativeCache::SetAssociativeCache(SetAssociativeCache const &c) : Cache(c) , ways(c.ways){
+        num_sets = capacity / ways;
+        lru_lists = c.lru_lists;
+        cache_maps = c.cache_maps;
+    }
+
     bool SetAssociativeCache::access(int block_id, AdvancedStats& stats) {
         int set_index = block_id % num_sets;  // Determinar el conjunto
         auto& cache_map = cache_maps[set_index];

@@ -23,6 +23,8 @@ private:
 public:
     SetAssociativeCache(int size, int num_ways);
 
+    SetAssociativeCache(SetAssociativeCache const &c);
+
     bool access(int block_id, AdvancedStats& stats) override;
 
     void add_block(int block_id) override;
