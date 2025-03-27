@@ -16,4 +16,4 @@ enum Color {
 
 std::vector<int> generate_access_pattern(int num_ops, bool sequential);
 void run_simulation(FileSystem& fs, std::vector<int>& addresses, AdvancedStats& stats);
-void print_stats(const AdvancedStats& stats, const std::string& fs_name);
+void print_stats(const AdvancedStats& stats, const std::string& fs_name, Color c = DEFAULT);
