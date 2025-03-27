@@ -63,7 +63,7 @@ class LRUCache {
         }
     
         void add_block(int block_id) {
-            if (cache_map.size() >= capacity) {
+            if (cache_map.size() >= (long unsigned int)capacity) {
                 // Eliminar el menos recientemente usado
                 int lru = lru_list.back();
                 cache_map.erase(lru);
