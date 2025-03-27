@@ -39,7 +39,7 @@ void run_simulation(FileSystem& fs, std::vector<int>& addresses, AdvancedStats& 
     stats.avg_access_time = stats.total_latency / addresses.size();
 }
 
-void print_stats(const AdvancedStats& stats, const std::string& fs_name, Color c = DEFAULT) {
+void print_stats(const AdvancedStats& stats, const std::string& fs_name, Color c) {
 
     std::cout << "\033[" << c << "m";
 
