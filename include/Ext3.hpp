@@ -1,16 +1,17 @@
 #pragma once
 #include "FileSystem.hpp"
 #include "LRUCache.hpp"
+#include "Cache.hpp"
 
 // Declaracion
 class Ext3 : public FileSystem {
     private:
-        LRUCache& cache;
+        Cache& cache;
         bool has_journal;
         
         void journal_operation(int address, AdvancedStats& stats);
     public:
-        Ext3(LRUCache& c, int bs);
+        Ext3(Cache& c, int bs);
     
         void read(int address, AdvancedStats& stats) override;
     

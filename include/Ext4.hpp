@@ -1,16 +1,17 @@
 #pragma once
 #include "FileSystem.hpp"
 #include "LRUCache.hpp"
+#include "Cache.hpp"
 
 // Declaracion ext4
 class Ext4 : public FileSystem {
     private:
-        LRUCache& cache;
+        Cache& cache;
         bool delayed_allocation;
         
         void extent_access(int address, AdvancedStats& stats);
     public:
-        Ext4(LRUCache& c, int bs);
+        Ext4(Cache& c, int bs);
     
         void read(int address, AdvancedStats& stats) override;
     

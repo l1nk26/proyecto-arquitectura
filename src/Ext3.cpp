@@ -2,7 +2,7 @@
 
 // Implementación Ext3
 
-Ext3::Ext3(LRUCache& c, int bs) : cache(c) {
+Ext3::Ext3(Cache& c, int bs) : cache(c) {
     block_size = bs;
     use_extents = false;
     journal_mode = METADATA_JOURNALING;

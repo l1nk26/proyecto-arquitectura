@@ -2,7 +2,7 @@
 
 
 // Implementación de caché con política LRU
-LRUCache::LRUCache(int size) : capacity(size) {}
+LRUCache::LRUCache(int size) : Cache(size) {}
 
 bool LRUCache::access(int block_id, AdvancedStats& stats) {
     auto it = cache_map.find(block_id);
