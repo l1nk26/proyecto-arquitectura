@@ -21,18 +21,18 @@ ejecutar: all
 all: $(BUILD_DIR) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CXX) $^ -o $@
+	@$(CXX) $^ -o $@
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(APP_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR)
 
 clean:
-	rm -rf $(BUILD_DIR) $(EXECUTABLE)
+	@rm -rf $(BUILD_DIR) $(EXECUTABLE)
 
 .PHONY: all clean ejecutar

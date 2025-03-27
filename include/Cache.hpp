@@ -6,7 +6,7 @@
 class Cache {
 
     protected:
-        int capacity;
+        unsigned int capacity; // numero de bloques
         
     public:
 

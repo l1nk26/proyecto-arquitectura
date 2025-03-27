@@ -15,9 +15,8 @@ private:
         std::list<int>::iterator lru_it;  // Iterador para la lista LRU del conjunto
     };
 
-    int capacity;      // Capacidad total del caché (número de bloques)
     int num_sets;      // Número de conjuntos (sets)
-    int ways;          // Número de vías (ways) por conjunto
+    unsigned int ways;          // Número de vías (ways) por conjunto
     std::vector<std::list<int>> lru_lists;  // Listas LRU por conjunto
     std::vector<std::unordered_map<int, CacheEntry>> cache_maps;  // Mapas por conjunto
 
