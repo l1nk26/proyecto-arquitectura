@@ -4,6 +4,7 @@
 #include <random>
 #include <chrono>
 #include <tabulate/table.hpp>
+#include <string>
 
 void initialize_stat(AdvancedStats& stats) {
     stats.cache_hits = 0;
@@ -84,13 +85,13 @@ void print_stats_table(const AdvancedStats& stats_ext3, const AdvancedStats& sta
 	stats.format().border_color(Color::yellow);
 	
 	stats.add_row(Row_t{"Sistemas de archivos", "Ext3", "Ext4"});
-	stats.add_row(Row_t{"Aciertos de cache", "Ext3", "Ext4"});
-	stats.add_row(Row_t{"Fallos de cache", "Ext3", "Ext4"});
-	stats.add_row(Row_t{"Lecturas de disco", "Ext3", "Ext4"});
-	stats.add_row(Row_t{"Escrituras de disco", "Ext3", "Ext4"});
-	stats.add_row(Row_t{"Operaciones de journal", "Ext3", "Ext4"});
-	stats.add_row(Row_t{"Latencia Total", "Ext3", "Ext4"});
-	stats.add_row(Row_t{"Tiempo medio por acceso", "Ext3", "Ext4"});
+	stats.add_row(Row_t{"Aciertos de cache", std::to_string(stats_ext3.cache_hits), std::to_string(stats_ext4.cache_hits)});
+	stats.add_row(Row_t{"Fallos de cache", std::to_string(stats_ext3.cache_misses), std::to_string(stats_ext4.cache_misses)});
+	stats.add_row(Row_t{"Lecturas de disco", std::to_string(stats_ext3.disk_reads), std::to_string(stats_ext4.disk_reads)});
+	stats.add_row(Row_t{"Escrituras de disco", std::to_string(stats_ext3.disk_writes), std::to_string(stats_ext4.disk_writes)});
+	stats.add_row(Row_t{"Operaciones de journal", std::to_string(stats_ext3.journal_ops), std::to_string(stats_ext4.journal_ops)});
+	stats.add_row(Row_t{"Latencia Total", std::to_string(stats_ext3.total_latency), std::to_string(stats_ext4.total_latency)});
+	stats.add_row(Row_t{"Tiempo medio por acceso", std::to_string(stats_ext3.avg_access_time), std::to_string(stats_ext4.avg_access_time)});
 	
 	std::cout << stats << "\n\n";
 }
