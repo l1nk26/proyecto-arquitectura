@@ -4,7 +4,7 @@
 #include "FileSystem.hpp"
 #include "Stats.hpp"
 
-enum Color {
+enum COLOR {
     DEFAULT = 0,
     RED = 31,
     GREEN = 32,
@@ -16,4 +16,4 @@ enum Color {
 
 std::vector<int> generate_access_pattern(int num_ops, bool sequential);
 void run_simulation(FileSystem& fs, std::vector<int>& addresses, AdvancedStats& stats);
-void print_stats(const AdvancedStats& stats, const std::string& fs_name, Color c = DEFAULT);
+void print_stats(const AdvancedStats& stats, const std::string& fs_name, COLOR c = DEFAULT);

@@ -29,6 +29,7 @@ void Ext4::write(int address, AdvancedStats& stats){
         int block_id = address / block_size;
         if (!cache.access(block_id, stats)) {
             cache.add_block(block_id);
+            stats.disk_writes++;
         }
         cache.mark_dirty(block_id);
     } else {
