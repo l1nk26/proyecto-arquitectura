@@ -51,5 +51,7 @@ int main() {
     print_stats(stats_ext3, "ext3 con cache asociativa por conjuntos de 4 vías", RED);
     print_stats(stats_ext4, "ext4 con cache asociativa por conjuntos de 4 vías", GREEN);
 
+    print_stats_table(stats_ext3, stats_ext4);
+
     return 0;
 }
