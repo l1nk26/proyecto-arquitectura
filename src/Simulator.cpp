@@ -4,6 +4,16 @@
 #include <random>
 #include <chrono>
 
+void initialize_stat(AdvancedStats& stats) {
+    stats.cache_hits = 0;
+    stats.cache_misses = 0;
+    stats.disk_reads = 0;
+    stats.disk_writes = 0;
+    stats.journal_ops = 0;
+    stats.total_latency = 0;
+    stats.avg_access_time = 0.0;
+}
+
 std::vector<int> generate_access_pattern(int num_ops, bool sequential) {
     std::vector<int> addresses;
     std::random_device rd;
@@ -24,6 +34,9 @@ std::vector<int> generate_access_pattern(int num_ops, bool sequential) {
 
 // Función de simulación
 void run_simulation(FileSystem& fs, std::vector<int>& addresses, AdvancedStats& stats) {
+
+    initialize_stat(stats);
+
     auto start = std::chrono::high_resolution_clock::now();
     
     for (int addr : addresses) {
