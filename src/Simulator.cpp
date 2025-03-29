@@ -77,13 +77,25 @@ void print_stats(const AdvancedStats& stats, const std::string& fs_name, COLOR c
     std::cout << "\033[0m";
 }
 
-void print_stats_table(const AdvancedStats& stats_ext3, const AdvancedStats& stats_ext4) {
+tabulate::Table print_stats_table(const AdvancedStats& stats_ext3, const AdvancedStats& stats_ext4, std::string& name) {
 	using namespace tabulate;
 	using Row_t = Table::Row_t;
 	
-	Table stats;
-	stats.format().border_color(Color::yellow);
+	Table main;
+	main.format()
+    .border_color(Color::yellow)
+    .hide_border();
 	
+    main.add_row(Row_t{name});
+
+    main[0].format()
+        .font_align(FontAlign::center)
+        .font_color(Color::blue)
+        .font_style({FontStyle::underline, FontStyle::italic});
+
+    Table stats;
+
+    
 	stats.add_row(Row_t{"Sistemas de archivos", "Ext3", "Ext4"});
 	stats.add_row(Row_t{"Aciertos de cache", std::to_string(stats_ext3.cache_hits), std::to_string(stats_ext4.cache_hits)});
 	stats.add_row(Row_t{"Fallos de cache", std::to_string(stats_ext3.cache_misses), std::to_string(stats_ext4.cache_misses)});
@@ -93,6 +105,11 @@ void print_stats_table(const AdvancedStats& stats_ext3, const AdvancedStats& sta
 	stats.add_row(Row_t{"Latencia Total", std::to_string(stats_ext3.total_latency), std::to_string(stats_ext4.total_latency)});
 	stats.add_row(Row_t{"Tiempo medio por acceso", std::to_string(stats_ext3.avg_access_time), std::to_string(stats_ext4.avg_access_time)});
 	
-	std::cout << stats << "\n\n";
+    
+    main.add_row(Row_t{stats});
+    stats.format().border_color(Color::green);
+
+    return main;
+	//std::cout << main << "\n\n";
 }
 
