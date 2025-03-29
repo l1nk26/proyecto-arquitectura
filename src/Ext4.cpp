@@ -2,8 +2,7 @@
 
 // Implementación ext4
 
-Ext4::Ext4(Cache& c, int bs) : cache(c) {
-    block_size = bs;
+Ext4::Ext4(Cache& c, int bs) : FileSystem(bs), cache(c) {
     use_extents = true;
     delayed_allocation = true;
 }

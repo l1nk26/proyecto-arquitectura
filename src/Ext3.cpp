@@ -2,8 +2,7 @@
 
 // Implementación Ext3
 
-Ext3::Ext3(Cache& c, int bs) : cache(c) {
-    block_size = bs;
+Ext3::Ext3(Cache& c, int bs) : FileSystem(bs), cache(c) {
     use_extents = false;
     journal_mode = METADATA_JOURNALING;
 }

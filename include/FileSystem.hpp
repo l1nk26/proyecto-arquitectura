@@ -10,6 +10,7 @@ class FileSystem {
         bool use_extents;
         
     public:
+        FileSystem(int bs) : block_size(bs) {}
         virtual ~FileSystem() {}
         virtual void read(int address, AdvancedStats& stats) = 0;
         virtual void write(int address, AdvancedStats& stats) = 0;
