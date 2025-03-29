@@ -1,7 +1,6 @@
 #include "Simulator.hpp"
 #include "Ext3.hpp"
 #include "Ext4.hpp"
-#include "LRUCache.hpp"
 #include "SetAssociativeCache.hpp"
 #include "DirectMappedCache.hpp"
 #include <iostream>
