@@ -18,8 +18,9 @@ void initialize_stat(AdvancedStats& stats) {
 
 std::vector<int> generate_access_pattern(int num_ops, bool sequential) {
     std::vector<int> addresses;
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    //std::random_device rd;
+    //std::mt19937 gen(rd());
+    std::mt19937 gen(10);
     
     if (sequential) {
         for (int i = 0; i < num_ops; ++i) {
@@ -39,8 +40,9 @@ void run_simulation(FileSystem& fs, std::vector<int>& addresses, AdvancedStats& 
 
     initialize_stat(stats);
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    //std::random_device rd;
+    //std::mt19937 gen(rd());
+    std::mt19937 gen(12345);
     std::uniform_int_distribution<> dist(0, 9); // Generar números entre 0 y 9
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -69,7 +71,7 @@ void print_stats(const AdvancedStats& stats, const std::string& fs_name, COLOR c
     std::cout << "Fallos de caché: " << stats.cache_misses << "\n";
     std::cout << "Lecturas de disco: " << stats.disk_reads << "\n";
     std::cout << "Escrituras de disco: " << stats.disk_writes << "\n";
-    std::cout << "Operaciones de journal: " << stats.journal_ops << "\n";
+    //std::cout << "Operaciones de journal: " << stats.journal_ops << "\n";
     std::cout << std::fixed << std::setprecision(8);
     std::cout << "Latencia total: " << stats.total_latency << " ms\n";
     std::cout << "Tiempo medio por acceso: " << stats.avg_access_time << " ms\n\n";
@@ -101,7 +103,7 @@ tabulate::Table print_stats_table(const AdvancedStats& stats_ext3, const Advance
 	stats.add_row(Row_t{"Fallos de cache", std::to_string(stats_ext3.cache_misses), std::to_string(stats_ext4.cache_misses)});
 	stats.add_row(Row_t{"Lecturas de disco", std::to_string(stats_ext3.disk_reads), std::to_string(stats_ext4.disk_reads)});
 	stats.add_row(Row_t{"Escrituras de disco", std::to_string(stats_ext3.disk_writes), std::to_string(stats_ext4.disk_writes)});
-	stats.add_row(Row_t{"Operaciones de journal", std::to_string(stats_ext3.journal_ops), std::to_string(stats_ext4.journal_ops)});
+	//stats.add_row(Row_t{"Operaciones de journal", std::to_string(stats_ext3.journal_ops), std::to_string(stats_ext4.journal_ops)});
 	stats.add_row(Row_t{"Latencia Total", std::to_string(stats_ext3.total_latency), std::to_string(stats_ext4.total_latency)});
 	stats.add_row(Row_t{"Tiempo medio por acceso", std::to_string(stats_ext3.avg_access_time), std::to_string(stats_ext4.avg_access_time)});
 	

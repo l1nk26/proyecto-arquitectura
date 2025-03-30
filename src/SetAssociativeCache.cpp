@@ -17,9 +17,9 @@
         auto& cache_map = cache_maps[set_index];
         auto& lru_list = lru_lists[set_index];
 
-        auto it = cache_map.find(block_id);
-        if (it != cache_map.end()) {
-            // Actualizar LRU dentro del conjunto
+        auto it = cache_map.find(block_id); 
+        if (it != cache_map.end()) { // se verifica si la clave existe en el mapa
+            // Actualizar LRU dentro del conjunto para que el valor accedido sea el mas recientemente utilizado
             lru_list.erase(it->second.lru_it);
             lru_list.push_front(block_id);
             it->second.lru_it = lru_list.begin();
